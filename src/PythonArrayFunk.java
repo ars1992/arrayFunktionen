@@ -53,7 +53,7 @@ public class PythonArrayFunk {
      * @param number
      * @return neues Array
      */
-    public static int[] append(int number, int[] array){
+    public static int[] append( int[] array, int number){
         int[] newArray = new int[array.length + 1];
         int pos = 0;
         for (int i : array){
@@ -124,7 +124,6 @@ public class PythonArrayFunk {
      * @param funktion
      * @return
      */
-
     public static int[] filter(int[] array, Filter funktion){
         int cnt = 0;
         for (int i : array){
@@ -186,4 +185,65 @@ public class PythonArrayFunk {
         }
         return newArray;
     }
+
+    /**
+     * PythonArrayFunk.index(arrayA, 3)
+     * Index Funktion.
+     * Ermittelt die erste Position von element in der
+     * Liste.
+     * @author Salomon Alessandro
+     * @param array
+     * @param element
+     * @return Position oder -1 wenn element nicht vorhanden ist
+     */
+    public static int index(int[] array, int element){
+        int cnt = 0;
+        for (int i : array) {
+            if (element == i)
+                return cnt;
+            cnt++;
+        }
+        return -1;
+    }
+
+    /**
+     * PythonArrayFunk.insert(arrayB, 2, 567)
+     * Fügt das Element element an der Position pos in die
+     * Liste ein. Bei Überschreiten der Array länge wird der
+     * Platz mit dem Wert 0 aufgefüllt
+     * @param array
+     * @param pos
+     * @param element
+     * @return
+     */
+    public static int[] insert(int[] array, int pos, int element){
+        int[] newArray;
+        int arrayLength = 0;
+        if (pos > array.length){
+            arrayLength = pos - array.length;
+            newArray = new int[array.length + arrayLength + 1];
+        } else {
+            newArray = new int[array.length + 1];
+        }
+        int c = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (i == pos)
+                newArray[c++] = element;
+            newArray[c++] = array[i];
+        }
+        if (arrayLength > 0){
+            for (int i = array.length; i < newArray.length; i++) {
+                if (i == pos)
+                    newArray[c] = element;
+                c++;
+            }
+        }
+        return newArray;
+    }
+
+
+    public interface Map{
+        int map();
+    }
 }
+

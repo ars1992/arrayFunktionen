@@ -4,7 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
         int[] arrayA = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 7, -1, 6};
-        int[] arrayB = {5, 3, 3, 7};
+        int[] arrayB = {5, 7, 4, 3, 9, 2};
+        int[] arrayC = {5};
 
 
         // del Funktion
@@ -17,7 +18,7 @@ public class Main {
         //append Funktion
         PythonArrayFunk arrayFunk = new PythonArrayFunk(arrayA);
         //System.out.println(arrayFunk);
-        System.out.println(Arrays.toString(PythonArrayFunk.append(56, arrayA)));
+        System.out.println(Arrays.toString(PythonArrayFunk.append(arrayA, 56)));
 
         //clear Funktion
         //PythonArrayFunk.clear();
@@ -46,6 +47,12 @@ public class Main {
 
         // pop Funktion
         System.out.println(Arrays.toString(PythonArrayFunk.pop(arrayA, 0)));
+
+        // index Funktion
+        System.out.println(PythonArrayFunk.index(arrayA, 3));
+
+        // insert Funktion
+        System.out.println(Arrays.toString(PythonArrayFunk.insert(arrayC, 3, 567)));
     }
 
 
