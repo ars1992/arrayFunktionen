@@ -353,6 +353,25 @@ public class PythonArrayFunk {
         return sum;
     }
 
-
+    /**
+     * Verbindet die Array elemente paarweise zu
+     * einem verschachteltem Array.
+     * @param arrayA int[]
+     * @param arrayB int[]
+     * @return int[][]
+     */
+    public static int[][] zip(int[] arrayA, int[] arrayB){
+        int[][] newArray;
+        if (arrayA.length >= arrayB.length){
+            newArray = new int[arrayB.length][2];
+        } else {
+            newArray = new int[arrayA.length][2];
+        }
+        for (int i = 0; i < newArray.length; i++) {
+            newArray[i][0] = arrayA[i];
+            newArray[i][1] = arrayB[i];
+        }
+        return newArray;
+    }
 }
 

@@ -73,6 +73,9 @@ public class Main {
 
         // sum Funktion
         System.out.println(PythonArrayFunk.sum(arrayA));
+
+        // zip Funktion
+        System.out.println(Arrays.deepToString(PythonArrayFunk.zip(arrayC, arrayB)));
     }
 
 
