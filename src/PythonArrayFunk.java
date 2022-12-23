@@ -1,6 +1,3 @@
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 public class PythonArrayFunk {
     static int[] classArray;
     PythonArrayFunk(int[] array){
@@ -78,9 +75,9 @@ public class PythonArrayFunk {
      * @param number
      * @return
      */
-    public static int count(int number){
+    public static int count(int[] array, int number){
         int cnt = 0;
-        for (int i : classArray){
+        for (int i : array){
             if (i == number) cnt++;
         }
         return cnt;
@@ -113,13 +110,6 @@ public class PythonArrayFunk {
 
     /**
      * Wendet die Funktion filter auf alle Elemente an.
-     * PythonArrayFunk.filter(arrayB, new PythonArrayFunk.Filter() {
-     *             @Override
-     *             public boolean filter(int number) {
-     *                 // Was soll überprüft werden.
-     *                 return number == 5;
-     *             }
-     *         })));
      * @param array
      * @param funktion
      * @return
@@ -241,9 +231,128 @@ public class PythonArrayFunk {
         return newArray;
     }
 
-
+    /**
+     * map Funktion
+     */
     public interface Map{
-        int map();
+        int map(int number);
     }
+
+    /**
+     * Wendet die Funktion new PythonArrayFunk.Map() auf  alle Elemente an.
+     * @param array
+     * @param funktion
+     * @return
+     */
+    public static int[] map(int[] array, Map funktion){
+        int[] newArray = new int[array.length];
+        for (int i = 0; i < array.length; i++){
+            newArray[i] = funktion.map(array[i]);
+        }
+        return newArray;
+    }
+
+    /**
+     * Entfernt das Element number aus dem Array.
+     * Mit true werden alle entfernt.
+     * Mit false das erste Element welches gleich number ist.
+     * @param array
+     * @param number
+     * @param all
+     * @return neues Array ohne die number
+     */
+    public static int[] remove(int[] array, int number, boolean all){
+        int [] newArray;
+        int pos = 0;
+        if (all){
+            newArray = new int[array.length - count(array, number)];
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] == number)
+                    continue;
+                newArray[pos++] = array[i];
+            }
+        } else {
+            boolean found = false;
+            newArray = new int[array.length - 1];
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] == number && !found) {
+                    found = true;
+                    continue;
+                }
+                newArray[pos++] = array[i];
+            }
+        }
+        return newArray;
+    }
+
+    /**
+     * Dreht das Array um(das erste Element
+     * zuletzt etc.).
+     * @param array
+     * @return Array in Umgekehrter Reihenfolge
+     */
+    public static int[] reverse(int[] array){
+        int[] newArray = new int[array.length];
+        int pos = 0;
+        for (int i = array.length - 1; i >= 0; i--){
+            newArray[pos++] = array[i];
+        }
+        return newArray;
+    }
+
+    /**
+     * Erstellt eine Copy vom Array
+     * @param array
+     * @return
+     */
+    public static int[] copy(int[] array){
+        int[] newArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = array[i];
+        }
+        return newArray;
+    }
+
+    private static boolean isSort(int[] array){
+        for (int i = 1; i < array.length; i++){
+            if (array[i - 1] > array[i])
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Sortiert die Liste.
+     * @param array
+     * @return gibt ein neues sortiertes Array zurück
+     */
+    public static int[] sort(int[] array){
+        int[] newArray = copy(array);
+        while ( ! isSort(newArray)){
+            for (int i = 1; i < newArray.length; i++){
+                if (newArray[i - 1] > newArray[i]){
+                    int temp = newArray[i - 1];
+                    newArray[i - 1] = newArray[i];
+                    newArray[i] = temp;
+                }
+            }
+        }
+        return newArray;
+    }
+
+    /**
+     * Berechnet die Summe der Listenelemente.
+     * @param array int[]
+     * @return summe des Arrays
+     */
+    public static int sum(int[] array){
+        int sum = 0;
+        for ( int i : array){
+            sum += i;
+        }
+        return sum;
+    }
+
+
 }
 

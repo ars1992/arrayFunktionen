@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         int[] arrayA = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 7, -1, 6};
         int[] arrayB = {5, 7, 4, 3, 9, 2};
-        int[] arrayC = {5};
+        int[] arrayC = {5, 5, 5, 4};
 
 
         // del Funktion
@@ -25,7 +25,7 @@ public class Main {
         PythonArrayFunk.printArray();
 
         // count Funktion
-        System.out.println(PythonArrayFunk.count(1));
+        System.out.println(PythonArrayFunk.count(arrayC, 5));
 
         // extend Funktion
         //System.out.println(Arrays.toString(PythonArrayFunk.extend(arrayA, arrayB)));
@@ -53,6 +53,26 @@ public class Main {
 
         // insert Funktion
         System.out.println(Arrays.toString(PythonArrayFunk.insert(arrayC, 3, 567)));
+
+        // map Funktion
+        System.out.println(Arrays.toString(PythonArrayFunk.map(arrayA, new PythonArrayFunk.Map() {
+            @Override
+            public int map(int number) {
+                return number * 3;
+            }
+        })));
+
+        // remove Funktion
+        System.out.println(Arrays.toString(PythonArrayFunk.remove(arrayC, 5, false)));
+
+        // reverse Funktion
+        System.out.println(Arrays.toString(PythonArrayFunk.reverse(arrayB)));
+
+        // sort Funktion
+        System.out.println(Arrays.toString(PythonArrayFunk.sort(arrayB)));
+
+        // sum Funktion
+        System.out.println(PythonArrayFunk.sum(arrayA));
     }
 
 
