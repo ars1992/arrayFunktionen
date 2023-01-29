@@ -76,6 +76,8 @@ public class Main {
 
         // zip Funktion
         System.out.println(Arrays.deepToString(PythonArrayFunk.zip(arrayC, arrayB)));
+
+        System.out.println(Arrays.toString(PythonArrayFunk.ungleicheWerte(arrayA, arrayB)));
     }
 
 
