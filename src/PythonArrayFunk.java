@@ -374,19 +374,6 @@ public class PythonArrayFunk {
         return newArray;
     }
 
-    public static int[] ungleicheWerte(int[] arrayA, int[] arrayB){
-        int[] arrayUngleicheWerte = new int[0];
 
-        for (int i: arrayA){
-            if(count(arrayB, i) == 0 && count(arrayUngleicheWerte, i) == 0){
-                append(arrayUngleicheWerte, i);
-            }
-
-        }
-
-
-
-        return arrayUngleicheWerte;
-    }
 }
 
